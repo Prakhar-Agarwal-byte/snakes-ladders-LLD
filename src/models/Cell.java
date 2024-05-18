@@ -7,13 +7,11 @@ public class Cell {
     private int position;
     private Snake snake;
     private Ladder ladder;
-    private List<Player> players;
 
     public Cell(int position) {
         this.position = position;
         this.snake = null;
         this.ladder = null;
-        this.players = new ArrayList<>();
     }
 
     public int getPosition() {
@@ -38,13 +36,5 @@ public class Cell {
 
     public void setLadder(Ladder ladder) {
         this.ladder = ladder;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
     }
 }
