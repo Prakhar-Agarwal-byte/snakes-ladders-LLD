@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0fa5346-df27-4c24-8205-99d936e1a135" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Player.java" afterDir="false" />
+    <list default="true" id="c0fa5346-df27-4c24-8205-99d936e1a135" name="Changes" comment="feat: multi dice, dynamic board size, multi winners, recursive cells, support for 6s">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +22,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Prakhar-Agarwal-byte/snakes-ladders-LLD.git",
+    "accountId": "033a4873-be8e-4e92-9f55-f623cc79904d"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 6
 }]]></component>
@@ -83,11 +87,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715967348063</updated>
-      <workItem from="1715967349122" duration="12936000" />
+      <workItem from="1715967349122" duration="13254000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: multi dice, dynamic board size, multi winners, recursive cells, support for 6s">
+      <option name="closed" value="true" />
+      <created>1716021814962</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716021814963</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: multi dice, dynamic board size, multi winners, recursive cells, support for 6s" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: multi dice, dynamic board size, multi winners, recursive cells, support for 6s" />
   </component>
 </project>
