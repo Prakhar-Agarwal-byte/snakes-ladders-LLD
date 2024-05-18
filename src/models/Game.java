@@ -3,42 +3,69 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Game {
     private final Scanner scanner = new Scanner(System.in);
     private Board board;
     private List<Player> players;
-    private Dice dice;
-    private boolean isActive;
+    private List<Dice> dices;
 
     public void setupGame() {
-        board = new Board(100);;
-        dice = new Dice(6);
-        isActive = true;
+        dices = new ArrayList<>();
+        Dice dice1 = new Dice(6);
+//        Dice dice2 = new Dice(6);
+        dices.add(dice1);
+//        dices.add(dice2);
         players = new ArrayList<>();
+        inputBoardSize();
         inputSnakes();
         inputLadders();
         inputPlayers();
     }
 
     public void startGame() {
-        while (isActive) {
+        while (players.size() > 1) {
             for (Player player : players) {
-                if (isActive) {
-                    int num = dice.roll();
-                    player.move(board, num);
-                    check();
+                if (!player.isWon()) {
+                    int move = rollDice(0);
+                    player.move(board, move);
+                    checkGameState();
                 }
             }
+            players = players.stream().filter(p -> !p.isWon()).collect(Collectors.toList());
         }
     }
 
-    public void check() {
-        Cell finishingCell = board.getBoard().get(100);
+    private int rollDice(int times) {
+        if (times >= 3) {
+            return 0;
+        }
+        int totalMoves = 0;
+        for (Dice dice: dices) {
+            totalMoves += dice.roll();
+        }
+        if (totalMoves == 6) {
+            int ans = rollDice(times+1);
+            if (ans == 0) return 0;
+            return totalMoves + rollDice(times+1);
+        }
+        return totalMoves;
+    }
+
+    private void checkGameState() {
+        Cell finishingCell = board.getBoard().get(board.getBoard().size()-1);
         if (!finishingCell.getPlayers().isEmpty()) {
             System.out.println(finishingCell.getPlayers().get(0).getName() + " has won the game!");
-            isActive = false;
+            Player finishedPlayer = finishingCell.getPlayers().get(0);
+            finishingCell.getPlayers().remove(finishedPlayer);
+            finishedPlayer.setWon(true);
         }
+    }
+
+    public void inputBoardSize() {
+        int boardSize = scanner.nextInt();
+        board = new Board(boardSize);
     }
 
     public void inputSnakes() {

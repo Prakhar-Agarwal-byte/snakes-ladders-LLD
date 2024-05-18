@@ -3,10 +3,12 @@ package models;
 public class Player {
     private String name;
     private Cell position;
+    private boolean isWon;
 
     public Player(String name, Cell position) {
         this.name = name;
         this.position = position;
+        this.isWon = false;
     }
 
     public void move(Board board, int positions) {
@@ -14,18 +16,21 @@ public class Player {
         int landingPosition = oldPosition + positions;
         if (landingPosition >= board.getBoard().size()) return;
         Cell landingCell = board.getBoard().get(landingPosition);
+        landingCell = getFinalCell(landingCell);
         this.position.getPlayers().remove(this);
-        Snake landingCellSnake = landingCell.getSnake();
-        Ladder landingCellLadder = landingCell.getLadder();
-        if (landingCellSnake != null) {
-            landingCell = landingCellSnake.getTail();
-        }
-        if (landingCellLadder != null) {
-            landingCell = landingCellLadder.getEnd();
-        }
         landingCell.getPlayers().add(this);
-        this.position.setPosition(landingPosition);
+        this.position = landingCell;
         System.out.println(this.name + " rolled a " + positions + " and moved from " + oldPosition + " to " + landingCell.getPosition());
+    }
+
+    private Cell getFinalCell(Cell cell) {
+        if (cell.getSnake() != null) {
+            return getFinalCell(cell.getSnake().getTail());
+        }
+        if (cell.getLadder() != null) {
+            return getFinalCell(cell.getLadder().getEnd());
+        }
+        return cell;
     }
 
     public String getName() {
@@ -42,5 +47,13 @@ public class Player {
 
     public void setPosition(Cell position) {
         this.position = position;
+    }
+
+    public boolean isWon() {
+        return isWon;
+    }
+
+    public void setWon(boolean won) {
+        isWon = won;
     }
 }
