@@ -4,15 +4,15 @@ public class Player {
     private String name;
     private Cell position;
 
-    public Player(String name, Cell position) {
+    public Player(String name) {
         this.name = name;
-        this.position = position;
+        this.position = new Cell(0);
     }
     // move player by positions on board
     public boolean move(Board board, int positions) {
         int oldPosition = this.position.getPosition();
         int landingPosition = oldPosition + positions;
-        if (landingPosition >= board.getBoard().size()-1) {
+        if (landingPosition >= board.getBoard().size()) {
             System.out.println(this.name + " rolled a " + positions + " and moved from " + oldPosition + " to " + landingPosition);
             return true;
         } else {
@@ -20,6 +20,7 @@ public class Player {
             landingCell = getFinalCell(landingCell);
             this.position = landingCell;
             System.out.println(this.name + " rolled a " + positions + " and moved from " + oldPosition + " to " + landingCell.getPosition());
+            if (landingCell.getPosition() == board.getBoard().size()-1) return true;
             return false;
         }
     }
